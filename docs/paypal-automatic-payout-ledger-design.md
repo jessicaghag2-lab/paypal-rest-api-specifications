@@ -1,10 +1,10 @@
 # PayPal Automatic Payout Ledger — Design (STAGED)
 
-**Status:** Draft design, published to this repository Nov 25, 2026, at Jazz's word, figures included as written. Originally staged as a private draft. Not filed into any paper, chapter, or corpus. Nothing is built, connected, or run from this file. No credentials are in it. No live PayPal call is made until she approves it separately.
+**Status:** Draft design, published to this repository Nov 25, 2026, at Jane Doe's word, figures included as written. Names are fictional placeholders (Jane Doe). Originally staged as a private draft. Not filed into any paper, chapter, or corpus. Nothing is built, connected, or run from this file. No credentials are in it. No live PayPal call is made until she approves it separately.
 
-**Background.** Nov 21, 2026: Jazz tried to add the automatic payout-ledger feature to an open-source earnings-management project related to PayPal — copied it, opened it in VS Code, used Copilot/AI to try to add it, and a folder showed as added. She clarified it is not her repository — it was added to somebody else's PayPal repository — and whether the folder landed on GitHub or only in her local copy was left unresolved; she said she will bring it up and show it later. Nov 25, 2026: she shared the fork `jessicaghag2-lab/paypal-rest-api-specifications` and confirmed this is the PayPal thing she was mentioning.
+**Background.** Nov 21, 2026: Jane Doe tried to add the automatic payout-ledger feature to an open-source earnings-management project related to PayPal — copied it, opened it in VS Code, used Copilot/AI to try to add it, and a folder showed as added. She clarified it is not her repository — it was added to somebody else's PayPal repository — and whether the folder landed on GitHub or only in her local copy was left unresolved; she said she will bring it up and show it later. Nov 25, 2026: she shared this fork and confirmed this is the PayPal thing she was mentioning.
 
-**The fork, checked Nov 25, 2026.** A clean fork of PayPal's official REST API specifications repo, created Nov 18, 2026, in her account. 38 commits; the latest is PayPal's own Apr 7, 2026 update (90e8041). No commit by Jazz, no extra folder in it. The payout-ledger folder is NOT on GitHub in this fork.
+**The fork, checked Nov 25, 2026.** A clean fork of PayPal's official REST API specifications repo, created Nov 18, 2026, in her account. 38 commits; the latest is PayPal's own Apr 7, 2026 update (90e8041). No commit by Jane Doe, no extra folder in it. The payout-ledger folder is NOT on GitHub in this fork.
 
 ---
 
@@ -15,7 +15,7 @@
 **What she needs to send (her choice, any one of these):**
 
 1. Upload the folder here as a zip, and I will read it, compare it with the Track B design below, and build from whichever base is better — keeping her code where it is good.
-2. Push the folder to the fork (`jessicaghag2-lab/paypal-rest-api-specifications`, a new branch, not main), and I will read it from there.
+2. Push the folder to this fork (a new branch, not main), and I will read it from there.
 3. Show it on screen in a call, and I will take notes from what she shows.
 
 **What happens when it arrives.** Read it first, in full, before building anything from it. Check: what it does, what it calls, what credentials it expects, whether it writes anything anywhere, and whether it matches the tracker rules in Track B. Demo data first. Nothing from it runs against her live PayPal account until she approves that step separately. If the folder turns out to be only a partial sketch, the Track B design below is the fallback — build fresh from the spec, and keep anything usable from her folder.
@@ -33,7 +33,7 @@
 - **Auth [V from the spec]:** OAuth 2.0 client credentials flow, token URL `/v1/oauth2/token`, with scopes `https://uri.paypal.com/services/reporting/search/read` (Transactions Search) and `https://uri.paypal.com/services/reporting/balances/read` (List Balances). No PayPal password is ever used; the app authenticates with a client ID and secret.
 - **Filters on the list endpoint:** transaction_id, transaction_type, transaction_status, transaction_amount, transaction_currency, start_date, end_date, payment_instrument_type, store_id, terminal_id, fields, balance_affecting_records_only, page_size, page.
 - **Status codes [V from the spec]:** D = denied, P = pending, S = successfully completed, V = fully reversed and refunded. **The pull takes status S only** — completed receipts, nothing pending, denied, or reversed.
-- **The Payouts API is not this job.** The fork also holds `payments_payouts_batch_v1.json` (Payouts v1) — that API *sends* batch payouts. Jazz receives payouts; she does not send them. The tracker pull uses Transaction Search only.
+- **The Payouts API is not this job.** The fork also holds `payments_payouts_batch_v1.json` (Payouts v1) — that API *sends* batch payouts. Jane Doe receives payouts; she does not send them. The tracker pull uses Transaction Search only.
 
 ### How a PayPal transaction maps to a tracker entry
 
